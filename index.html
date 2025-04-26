@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CommunityConnect - Neighborhood Safety & Engagement</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary-color: #4361ee;
+            --primary-light: #4895ef;
+            --secondary-color: #ff6b6b;
+            --accent-color: #4cc9f0;
+            --dark-color: #1d3557;
+            --light-color: #f8f9fa;
+            --success-color: #4ade80;
+            --warning-color: #fbbf24;
+            --text-color: #333;
+            --text-light: #6c757d;
+            --border-radius: 12px;
+            --box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+        
+        header.scrolled {
+            padding: 0.5rem 0;
+            background-color: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        .logo i {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-right: 0.5rem;
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+            position: relative;
+        }
+        
+        .nav-links a {
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+        
+        .auth-buttons a {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            margin-left: 1rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .login {
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .login:hover {
+            background-color: rgba(67, 97, 238, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .signup {
+            background-color: var(--primary-color);
+            color: white;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+        }
+        
+        .signup:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(67, 97, 238, 0.4);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--dark-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(29, 53, 87, 0.8), rgba(72, 149, 239, 0.8)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            color: white;
+            padding: 10rem 2rem 8rem;
+            margin-top: 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: -5rem;
+            left: 0;
+            width: 100%;
+            height: 10rem;
+            background-color: var(--light-color);
+            transform: skewY(-3deg);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #ff5252;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        .secondary-button {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            margin-left: 1rem;
+            backdrop-filter: blur(5px);
+        }
+        
+        .secondary-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        .bounce-arrow {
+            position: absolute;
+            bottom: 4rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* Features Section */
+        .features {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--dark-color);
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--accent-color));
+            border-radius: 2px;
+        }
+        
+        .section-title p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            width: 100%;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            transition: var(--transition);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 0;
+            background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(76, 201, 240, 0.05));
+            transition: var(--transition);
+            z-index: -1;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card:hover::before {
+            height: 100%;
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            transform: rotate(10deg);
+            transition: var(--transition);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.3);
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: rotate(0deg);
+        }
+        
+        .feature-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            font-size: 1.3rem;
+        }
+        
+        .feature-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        
+        .feature-link i {
+            margin-left: 5px;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .feature-link:hover {
+            color: var(--primary-light);
+        }
+        
+        .feature-link:hover i {
+            transform: translateX(3px);
+        }
+        
+        /* How It Works Section */
+        .how-it-works {
+            background-color: #f0f4f8;
+            padding: 8rem 2rem;
+            position: relative;
+        }
+        
+        .how-it-works::before,
+        .how-it-works::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background-color: #f0f4f8;
+            z-index: 1;
+        }
+        
+        .how-it-works::before {
+            top: -50px;
+            transform: skewY(-2deg);
+        }
+        
+        .how-it-works::after {
+            bottom: -50px;
+            transform: skewY(2deg);
+        }
+        
+        .steps {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step {
+            display: flex;
+            gap: 2.5rem;
+            align-items: flex-start;
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            box-shadow: var(--box-shadow);
+            transition: var(--transition);
+        }
+        
+        .step:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .step-number {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            min-width: 60px;
+            height: 60px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.2);
+        }
+        
+        .step-content h3 {
+            margin-bottom: 0.8rem;
+            color: var(--dark-color);
+            font-size: 1.3rem;
+        }
+        
+        /* Testimonials Section */
+        .testimonials {
+            max-width: 1200px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+        }
+        
+        .testimonial-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .testimonial-track {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 2.5rem;
+            margin: 1rem;
+            min-width: calc(100% - 2rem);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+        
+        .quote-icon {
+            color: rgba(67, 97, 238, 0.1);
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            flex-grow: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background-color: #ddd;
+            margin-right: 1rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .author-info {
+            flex-grow: 1;
+        }
+        
+        .author-name {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+        
+        .author-title {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+        
+        .testimonial-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .testimonial-dot.active {
+            background-color: var(--primary-color);
+            transform: scale(1.2);
+        }
+        
+        .arrow-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            pointer-events: none;
+        }
+        
+        .prev-arrow, .next-arrow {
+            background-color: white;
+            color: var(--dark-color);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            pointer-events: auto;
+        }
+        
+        .prev-arrow:hover, .next-arrow:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .stats-section::before,
+        .stats-section::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            z-index: 1;
+        }
+        
+        .stats-section::before {
+            top: -50px;
+            transform: skewY(2deg);
+        }
+        
+        .stats-section::after {
+            bottom: -50px;
+            transform: skewY(-2deg);
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .stat-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            transition: var(--transition);
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 8rem 2rem 6rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-content p {
+            margin-bottom: 2.5rem;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/api/placeholder/1200/800') center/cover no-repeat;
+            opacity: 0.1;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-column h3 {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-color);
+            font-size: 1.3rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: linear-gradient(to right, var(--secondary-color), var(--accent-color));
+            border-radius: 1.5px;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a i {
+            margin-right: 0.5rem;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+        
+        .footer-links a:hover i {
+            color: var(--secondary-color);
+        }
+        
+        .newsletter h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .newsletter p {
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex-grow: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-radius: 30px 0 0 30px;
+            outline: none;
+        }
+        
+        .newsletter-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        .newsletter-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 30px 30px 0;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .newsletter-btn:hover {
+            background-color: #ff5252;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .fade-right {
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-right.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        .fade-left {
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-left.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Mobile Styles */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .step {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .step-number {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: white;
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 6rem 2rem 2rem;
+                transition: var(--transition);
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+                z-index: 9;
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links li {
+                margin: 1rem 0;
+                width: 100%;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                z-index: 10;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .secondary-button {
+                margin-left: 0;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo"><i class="fas fa-shield-alt"></i>Community<span>Connect</span></a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#features" class="nav-link">Features</a></li>
+                    <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                    <li><a href="#testimonials" class="nav-link">Success Stories</a></li>
+                    <li><a href="#stats" class="nav-link">Impact</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                </ul>
+                <div class="auth-buttons">
+                    <a href="login/SignUp_LogIn_Form.html" class="login">Log In</a>
+                    <a href="login/SignUp_LogIn_Form.html#register" class="signup">Sign Up</a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInUp">Building Safer Neighborhoods Together</h1>
+            <p class="animate__animated animate__fadeInUp animate__delay-1s">CommunityConnect brings neighbors together to enhance safety, strengthen relationships, and create more resilient communities.</p>
+            <div class="animate__animated animate__fadeInUp animate__delay-1s">
+                <a href="login/SignUp_LogIn_Form.html#register" class="cta-button">Join Your Neighborhood</a>
+                <a href="#how-it-works" class="secondary-button">Learn More</a>
+            </div>
+        </div>
+        <a href="#features" class="bounce-arrow">
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+    
+    <section class="features" id="features">
+        <div class="section-title">
+            <h2 class="fade-up">Powerful Community Features</h2>
+            <p class="fade-up">Everything you need to stay connected, informed, and engaged</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <h3>Safety Alerts</h3>
+                <p>Receive real-time notifications about important safety concerns, weather alerts, and emergency information in your neighborhood.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h3>Issue Reporting</h3>
+                <p>Easily report community issues like broken streetlights, potholes, or graffiti directly through the app for faster resolution.</p>
+                <a href="issue-reporting-page.html" class="feature-link">Report an Issue <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Neighborhood Groups</h3>
+                <p>Connect with neighbors who share your interests, hobbies, and community goals. Join existing groups or create your own.</p>
+                <a href="neighborhood-groups-page.html" class="feature-link">Explore Groups <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Community Events</h3>
+                <p>Discover and organize local events, from block parties to neighborhood clean-ups, to strengthen community bonds.</p>
+                <a href="community-events-page.html" class="feature-link">View Events <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-map-marked-alt"></i>
+                </div>
+                <h3>Interactive Map</h3>
+                <p>Visualize community information on an interactive map showing reported issues, upcoming events, and local resources.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-comment-dots"></i>
+                </div>
+                <h3>Local Discussions</h3>
+                <p>Engage in civil conversations about neighborhood topics, share recommendations, and get advice from those who know your area best.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-exchange-alt"></i>
+                </div>
+                <h3>Resource Sharing</h3>
+                <p>Share tools, skills, and resources with neighbors through our community marketplace, reducing waste and building relationships.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <h3>Volunteer Coordination</h3>
+                <p>Find volunteer opportunities or request help from neighbors for community initiatives and personal assistance.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <h3>Local Business Directory</h3>
+                <p>Discover and support neighborhood businesses with our curated directory of local shops, services, and restaurants.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Verified Neighbors</h3>
+                <p>Feel secure knowing that community members are verified residents, creating a trusted network you can count on.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3>Community Announcements</h3>
+                <p>Stay informed with important updates from local officials, HOA boards, and community leaders in one centralized place.</p>
+            </div>
+            <div class="feature-card fade-up">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Safety Analytics</h3>
+                <p>Access neighborhood safety trends and statistics to better understand and address community concerns.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section class="how-it-works" id="how-it-works">
+        <div class="section-title">
+            <h2 class="fade-up">How It Works</h2>
+            <p class="fade-up">A simple and effective process to get you started</p>
+        </div>
+        <div class="steps">
+            <div class="step fade-up">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Sign Up</h3>
+                    <p>Create an account and verify your identity</p>
+                </div>
+            </div>
+            <div class="step fade-up">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Connect</h3>
+                    <p>Join your neighborhood or create a new one</p>
+                </div>
+            </div>
+            <div class="step fade-up">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Engage</h3>
+                    <p>Start participating in community activities</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="testimonials" id="testimonials">
+        <div class="section-title">
+            <h2 class="fade-up">Success Stories</h2>
+            <p class="fade-up">Hear from our community members</p>
+        </div>
+        <div class="testimonial-slider">
+            <div class="testimonial-track">
+                <div class="testimonial-card fade-up">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "CommunityConnect has been a game-changer for our neighborhood. It's so easy to use and has connected us with so many great people."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://via.placeholder.com/60x60" alt="Author Avatar">
+                        </div>
+                        <div class="author-info">
+                            <h4 class="author-name">John Doe</h4>
+                            <p class="author-title">Neighbor</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-up">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "I've never seen our community come together like this before. CommunityConnect has made it so easy to get involved."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://via.placeholder.com/60x60" alt="Author Avatar">
+                        </div>
+                        <div class="author-info">
+                            <h4 class="author-name">Jane Smith</h4>
+                            <p class="author-title">Community Leader</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-up">
+                    <div class="quote-icon">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "CommunityConnect has helped me feel more connected to my community. I've met so many great people through the platform."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://via.placeholder.com/60x60" alt="Author Avatar">
+                        </div>
+                        <div class="author-info">
+                            <h4 class="author-name">Mike Johnson</h4>
+                            <p class="author-title">Community Member</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider-controls">
+                <button class="prev-arrow">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="next-arrow">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <section class="stats-section" id="stats">
+        <div class="section-title">
+            <h2 class="fade-up">Community Impact</h2>
+            <p class="fade-up">See the difference CommunityConnect is making</p>
+        </div>
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-item fade-up">
+                    <h3 class="stat-number">100+</h3>
+                    <p class="stat-label">Active Communities</p>
+                </div>
+                <div class="stat-item fade-up">
+                    <h3 class="stat-number">500+</h3>
+                    <p class="stat-label">Community Events</p>
+                </div>
+                <div class="stat-item fade-up">
+                    <h3 class="stat-number">200+</h3>
+                    <p class="stat-label">Verified Neighbors</p>
+                </div>
+                <div class="stat-item fade-up">
+                    <h3 class="stat-number">1000+</h3>
+                    <p class="stat-label">Community Members</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="cta-section" id="about">
+        <div class="section-title">
+            <h2 class="fade-up">About Us</h2>
+            <p class="fade-up">Learn more about our mission and team</p>
+        </div>
+        <div class="cta-content">
+            <h2 class="fade-up">Our Mission</h2>
+            <p class="fade-up">
+                CommunityConnect is dedicated to creating safer, more connected neighborhoods by empowering residents to take an active role in their community.
+            </p>
+            <h2 class="fade-up">Our Team</h2>
+            <p class="fade-up">
+                We're a team of passionate individuals who believe in the power of community.
+            </p>
+            <div class="cta-buttons">
+                <a href="login/SignUp_LogIn_Form.html" class="cta-button">Join CommunityConnect</a>
+                <a href="#how-it-works" class="secondary-button">Learn More</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <p>CommunityConnect is dedicated to creating safer, more connected neighborhoods by empowering residents to take an active role in their community.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#testimonials">Success Stories</a></li>
+                    <li><a href="#stats">Impact</a></li>
+                    <li><a href="#about">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact</h3>
+                <p>Email: info@communityconnect.com</p>
+                <p>Phone: (555) 123-4567</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2024 CommunityConnect. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Add this code to make the fade animations work
+            const fadeElements = document.querySelectorAll('.fade-up, .fade-left, .fade-right');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            fadeElements.forEach(element => {
+                observer.observe(element);
+            });
+        });
+    </script>
+</body>
+</html>
